@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM python:3
 
 RUN apt update -y && apt install -y make
 RUN apt install -y git
