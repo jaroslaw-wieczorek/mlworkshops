@@ -17,9 +17,8 @@ cat results | tail -n 10
 
 cat results | awk 'BEGIN{OFS="\t"}{print $6, $7, $8, $9}' | awk '{ print ($2 + $3 + $4)/($2 + $3 + $1) }' | tail -n 10
 
-
 # Show files
-ls -l
+ls
 
 
 
