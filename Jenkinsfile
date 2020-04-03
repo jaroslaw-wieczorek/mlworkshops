@@ -16,7 +16,7 @@ pipeline {
       stage('CopyArtificats')
       {
       	steps{
-      		copyArtifacts filter: '/artifact/wikinews_results.txt', fingerprintArtifacts: true, projectName: 'ASR-eval', selector: lastSuccessful()
+      		copyArtifacts filter: 'wikiniews_results.tsv', fingerprintArtifacts: true, projectName: 'ASR-eval', selector: lastSuccessful()
       	}
       }
    }
