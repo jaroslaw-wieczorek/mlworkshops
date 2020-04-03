@@ -25,6 +25,11 @@ pipeline {
       		sh label: 'metrics', script: 'wc -l  wikiniews_results.tsv > wynik.txt'
       	}
       }
-      
+      stage('Archive metrics')
+      {
+      	steps{
+      		archiveArtifacts 'wynik.txt'
+      	}
+      }
    }
 }
