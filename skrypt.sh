@@ -16,3 +16,12 @@ ls -l
 
 # RUN SCLITE 
 sclite -f 0 -r reference.trn trn -h hypothesis.trn trn -e utf-8 -i rm -o all stdout
+
+# wikiniews_results tail -n 10
+echo $((tail -n 10 wikiniews_results.trn))
+
+# reference tail -10
+echo $((tail -n 10 reference.trn))
+
+# hypothesis tail 
+echo $((tail -n 10 hypothesis.trn))
