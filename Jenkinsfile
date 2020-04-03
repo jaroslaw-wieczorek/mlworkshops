@@ -22,7 +22,8 @@ pipeline {
       stage('Count metrics')
       {
       	steps{
-      		sh label: '', script: './skrypt.sh'
+			sh label: '', script: 'cd'
+      		sh label: 'metrics', script: './skrypt.sh'
       	}
       }
       
