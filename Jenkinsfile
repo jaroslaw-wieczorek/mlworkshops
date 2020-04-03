@@ -19,5 +19,12 @@ pipeline {
       		copyArtifacts filter: 'wikiniews_results.tsv', fingerprintArtifacts: true, projectName: 'ASR-eval', selector: lastSuccessful()
       	}
       }
+      stage('Count metrics')
+      {
+      	steps{
+      		sh label: '', script: 'skrypt.sh'
+      	}
+      }
+      
    }
 }
