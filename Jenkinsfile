@@ -18,19 +18,30 @@ pipeline {
       {
       	steps{
       		copyArtifacts filter: 'wikiniews_results.tsv', fingerprintArtifacts: true, projectName: 'ASR-eval', selector: lastSuccessful()
+      		copyArtifacts excludes: 'wikinews_results.tsv', fingerprintArtifacts: true, projectName: 's416199-metrics', selector: lastSuccessful()
       	}
       }
-      stage('Count metrics')
+      stage('Calc my metrics')
       {
       	steps{
-      		sh label: 'ls', script: 'ls'
       		sh label: 'metrics', script: './skrypt.sh'
+      		      		
       	}
       }
       stage('Archive metrics')
       {
       	steps{
+      		archiveArtifacts 'liczba_wierszy.txt'
       		archiveArtifacts 'wynik.txt'
+      		archiveArtifacts 'results'
+      		archiveArtifacts 'hypothesis.txt'
+      		archiveArtifacts 'reference.txt'
+      		archiveArtifacts 'hypothesis.trn'
+      		archiveArtifacts 'reference.trn'  
+      		archiveArtifacts 'wer_all.txt'
+      		archiveArtifacts 'wer.txt'
+      		archiveArtifacts 'srr.txt'
+      		archiveArtifacts 'wikinews_results.tsv'
       	}
       }
    }

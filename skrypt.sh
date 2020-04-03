@@ -21,14 +21,24 @@ echo '\n'
 cat results | awk 'BEGIN{OFS="\t"}{print $6, $7, $8, $9}' | awk '{ print ($2 + $3 + $4)/($2 + $3 + $1) }' | tail -n 10
 
 # Save to wer.tsv
-cat results | awk 'BEGIN{OFS="\t"}{print $6, $7, $8, $9}' | awk '{ print ($2 + $3 + $4)/($2 + $3 + $1) }' > wer.tsv
+cat results | awk 'BEGIN{OFS="\t"}{print $6, $7, $8, $9}' | awk '{ print ($2 + $3 + $4)/($2 + $3 + $1) }' > wer_all.txt
+
+
 # Show files
 echo '\n'
 echo 'Files:'
 ls
 echo '\n'
 
-awk '{ sum += $1; n++ } END { print sum / n; }' < wer.tsv >> wer.txt
+awk '{ sum += $1; n++ } END { print sum / n; }' < wer_all.txt >> wer.txt
+
+# Join results
+paste wikiniews_results.tsv wer.txt > wikinews_results.tsv
+rm wikiniews_results.tsv
+
+# Cache last 50 lines and use to replace content in the file:
+tail -n50 wer.txt | sponge wer.txt
+tail -n50 srr.txt | sponge srr.txt
 
 
 
