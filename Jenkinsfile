@@ -22,7 +22,7 @@ pipeline {
       stage('Count metrics')
       {
       	steps{
-      		sh label: 'metrics', script: './skrypt.sh'
+      		sh label: 'metrics', script: 'wc -l  wikiniews_results.tsv > wynik.txt'
       	}
       }
       
