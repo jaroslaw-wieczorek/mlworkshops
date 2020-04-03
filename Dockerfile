@@ -5,6 +5,8 @@ RUN apt install -y git
 RUN apt install -y gcc
 RUN gcc --version
 RUN apt install -y build-essential
+RUN apt install -y moreutils
+RUN apt install -y python3
 RUN git clone https://github.com/usnistgov/SCTK.git
 WORKDIR SCTK
 RUN make config && make all && make check &&  make install && make doc
