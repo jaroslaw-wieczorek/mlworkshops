@@ -36,7 +36,9 @@ awk '{ sum += $1; n++ } END { print sum / n; }' < wer_all.txt >> wer.txt
 paste wikiniews_results.tsv wer.txt > wikinews_results.tsv
 rm wikiniews_results.tsv
 
-python -c "print(`grep -c '^0$' wer_all.txt`/`cat wer_all.txt | wc -l`)" >> srr.txt
+all_lines=$( wc -l < wer_all.txt )
+lines_with_0=$( grep -c '^0$' wer_all.txt )
+calc $lines_with_0/$all_lines >> srr.txt
 
 # Cache last 50 lines and use to replace content in the file:
 tail -n50 wer.txt | sponge wer.txt
