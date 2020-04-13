@@ -27,7 +27,7 @@ pipeline {
              sh label: 'SRR plot', script: './wykresy.py srr.txt srr.png'
          }
       }
-      stage('Plots')
+      stage('ArchiveArtifacts')
       {
          archiveArtifacts 'wer.png'
          archiveArtifacts 'srr.png'
