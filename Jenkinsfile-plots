@@ -1,0 +1,36 @@
+pipeline {
+    agent { dockerfile true }
+    stages {
+      stage('Hello_in_Docker') {
+         steps {
+            echo 'Hello World'
+         }
+      }
+      stage('Checkout')
+      {
+      	steps {
+      		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/jaroslaw-wieczorek/s416199-mlworkshops.git']]])		
+      	}
+      }
+      
+      stage('CopyArtifcats')
+      {
+      	steps{
+            copyArtifacts filter: 'wer.txt', fingerprintArtifacts: true, projectName: 's416199-metrics', selector: lastSuccessful()
+      		copyArtifacts filter: 'srr.txt', fingerprintArtifacts: true, projectName: 's416199-metrics', selector: lastSuccessful()
+      	}
+      }
+      stage('Plots')
+      {
+      	steps{
+      		sh label: 'metrics', script: './wykresy.sh'   		
+      	}
+      }
+      stage('Archive_plots')
+      {
+      	steps{
+               
+      	}
+     }
+   }
+}
