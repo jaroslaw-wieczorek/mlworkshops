@@ -29,8 +29,10 @@ pipeline {
       }
       stage('ArchiveArtifacts')
       {
-         archiveArtifacts 'wer.png'
-         archiveArtifacts 'srr.png'
+         steps {
+            archiveArtifacts 'wer.png'
+            archiveArtifacts 'srr.png'
+         }
       }
 
    }
