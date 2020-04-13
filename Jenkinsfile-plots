@@ -13,7 +13,7 @@ pipeline {
       	}
       }
       
-      stage('CopyArtifcats')
+      stage('CopyArtifacts')
       {
       	steps{
             copyArtifacts filter: 'wer.txt', fingerprintArtifacts: true, projectName: 's416199-metrics', selector: lastSuccessful()
@@ -22,10 +22,16 @@ pipeline {
       }
       stage('Plots')
       {
-      	steps{
-      		sh label: 'metrics', script: './wykresy.sh'   		
-      	}
+         steps {
+             sh label: 'WER plot', script: './wykresy.py wer.txt wer.png'
+             sh label: 'SRR plot', script: './wykresy.py srr.txt srr.png'
+         }
       }
-     
+      stage('Plots')
+      {
+         archiveArtifacts 'wer.png'
+         archiveArtifacts 'srr.png'
+      }
+
    }
 }

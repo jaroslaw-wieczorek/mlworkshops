@@ -34,7 +34,7 @@ pipeline {
       		archiveArtifacts 'results'
       		archiveArtifacts 'hypothesis.txt'
       		archiveArtifacts 'reference.txt'
-     		   archiveArtifacts 'hypothesis.trn'
+     		archiveArtifacts 'hypothesis.trn'
       		archiveArtifacts 'reference.trn'  
       		archiveArtifacts 'wer_all.txt'
       		archiveArtifacts 'wer.txt'
