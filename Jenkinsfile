@@ -13,7 +13,7 @@ pipeline {
       	}
       }
       
-      stage('CopyArtificats')
+      stage('CopyArtifacts')
       {
       	steps{
       		copyArtifacts filter: 'wikiniews_results.tsv', fingerprintArtifacts: true, projectName: 'ASR-eval', selector: lastSuccessful()

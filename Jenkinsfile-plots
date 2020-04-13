@@ -26,11 +26,6 @@ pipeline {
       		sh label: 'metrics', script: './wykresy.sh'   		
       	}
       }
-      stage('Archive_plots')
-      {
-      	steps{
-               
-      	}
-     }
+     
    }
 }
