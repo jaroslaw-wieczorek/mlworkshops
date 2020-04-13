@@ -17,7 +17,7 @@ pipeline {
       {
       	steps{
       		copyArtifacts filter: 'wikiniews_results.tsv', fingerprintArtifacts: true, projectName: 'ASR-eval', selector: lastSuccessful()
-      		//copyArtifacts excludes: 'wikinews_results.tsv', fingerprintArtifacts: true, projectName: 's416199-metrics', selector: lastSuccessful()
+      		copyArtifacts excludes: 'wikinews_results.tsv', fingerprintArtifacts: true, projectName: 's416199-metrics', selector: lastSuccessful()
       	}
       }
       stage('Metrics')
