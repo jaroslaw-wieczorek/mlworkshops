@@ -42,5 +42,12 @@ pipeline {
       		archiveArtifacts 'wikinews_results.tsv'
       	}
      }
+
+     stage('Build plots') 
+     {
+         steps {
+            build 's416199-plots'
+         }
+      }
    }
 }
