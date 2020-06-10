@@ -1,2 +1,2 @@
-# s416199-mlworkshops
+# mlworkshops
 Cloud Computing Jenkins with Docker
