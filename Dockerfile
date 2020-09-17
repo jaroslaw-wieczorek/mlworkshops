@@ -10,8 +10,8 @@ WORKDIR ${PROJECT_DIR}
 RUN echo "$(pwd)"
 RUN echo "$(ls)"
 RUN echo "$(cat Pipfile)"
-RUN pipenv install
+RUN pipenv install --system --deploy --ignore-pipfile
 
-RUN pipenv run coverage run manage.py test
-RUN pipenv run coverage xml -o ./reports/coverage.xml
-RUN pipenv run coverage report > ./reports/coverage.txt
+RUN coverage run manage.py test
+RUN coverage xml -o ./reports/coverage.xml
+RUN coverage report > ./reports/coverage.txt
