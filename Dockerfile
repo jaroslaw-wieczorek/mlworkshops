@@ -8,9 +8,10 @@ ENV PROJECT_DIR ./anc-backend
 
 WORKDIR ${PROJECT_DIR}
 RUN echo "$(pwd)"
-RUN ls
+RUN echo "$(ls)"
+RUN echo "$(cat Pipfile)"
 RUN pipenv install
 
-RUN pipenv run coverage run manage.py run tests
+RUN pipenv run coverage run manage.py test
 RUN pipenv run coverage xml -o ./reports/coverage.xml
 RUN pipenv run coverage report > ./reports/coverage.txt
