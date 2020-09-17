@@ -17,7 +17,7 @@ pipeline {
       {
       	steps{
       		copyArtifacts filter: 'reports', fingerprintArtifacts: true, projectName: 'anc-backend-test', selector: lastSuccessful()
-      	}      	}
+      	}      	
       }
       stage('RunTets')
       {
