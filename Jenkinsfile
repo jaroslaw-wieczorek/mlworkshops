@@ -22,7 +22,7 @@ pipeline {
      	stage('RunTets')
      	{
       		steps {
-      			sh label: 'tests', script: './skrypt.sh'   		
+      			sh label: 'show', script: 'ls'   		
       		}
       	}
       	stage('ArchiveReports')
