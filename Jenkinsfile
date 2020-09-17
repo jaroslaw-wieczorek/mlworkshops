@@ -32,7 +32,7 @@ pipeline {
       			archiveArtifacts 'reports/coverage.xml'
       		}
      	}
-     	stage('Build plots') 
+     	stage('BuildPlots') 
      	{
      		steps {
         	    echo 'Hello World'
