@@ -7,7 +7,7 @@ RUN apt install -y git
 ENV PROJECT_DIR ./anc-backend
 
 WORKDIR ${PROJECT_DIR}
-echo $(pwd)
+RUN echo "$(pwd)"
 RUN ls
 RUN pipenv install
 
