@@ -10,6 +10,6 @@ WORKDIR ${PROJECT_DIR}
 
 RUN pipenv install --system --deploy
 
-pipenv run coverage run manage.py run tests
-pipenv run coverage xml -o ./reports/coverage.xml
-pipenv run coverage report > ./reports/coverage.txt
+RUN pipenv run coverage run manage.py run tests
+RUN pipenv run coverage xml -o ./reports/coverage.xml
+RUN pipenv run coverage report > ./reports/coverage.txt
