@@ -2,7 +2,7 @@ FROM python:3.7.5
 RUN apt update -y && apt install -y make
 RUN pip install pipenv
 RUN apt install -y git
-RUN cd anc-backend
+RUN echo $(ls)
 RUN echo "$(pwd)"
 RUN echo "$(ls)"
 RUN echo "$(cat Pipfile)"
