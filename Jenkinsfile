@@ -9,45 +9,32 @@ pipeline {
       stage('Checkout')
       {
       	steps {
-      		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/jaroslaw-wieczorek/s416199-mlworkshops.git']]])		
+      		checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://git.man.poznan.pl/stash/scm/amunatcoll/anc-backend.git']]])		
       	}
       }
       
-      stage('CopyArtifacts')
+      stage('CopyReports')
       {
       	steps{
-      		copyArtifacts filter: 'wikiniews_results.tsv', fingerprintArtifacts: true, projectName: 'ASR-eval', selector: lastSuccessful()
-      		copyArtifacts excludes: 'wikinews_results.tsv', fingerprintArtifacts: true, projectName: 's416199-metrics', selector: lastSuccessful()
+      		copyArtifacts filter: 'reports', fingerprintArtifacts: true, projectName: 'anc-backend-test', selector: lastSuccessful()
+      	}      	}
+      }
+      stage('RunTets')
+      {
+      	steps{
+      		sh label: 'tests', script: './skrypt.sh'   		
       	}
       }
-      stage('Metrics')
+      stage('ArchiveReports')
       {
       	steps{
-      		sh label: 'metrics', script: './skrypt.sh'   		
-      	}
-      }
-      stage('Archive_metrics')
-      {
-      	steps{
-      		archiveArtifacts 'liczba_wierszy.txt'
-      		archiveArtifacts 'wynik.txt'
-      		archiveArtifacts 'results'
-      		archiveArtifacts 'hypothesis.txt'
-      		archiveArtifacts 'reference.txt'
-     		archiveArtifacts 'hypothesis.trn'
-      		archiveArtifacts 'reference.trn'  
-      		archiveArtifacts 'wer_all.txt'
-      		archiveArtifacts 'wer.txt'
-      		archiveArtifacts 'srr.txt'
-      		archiveArtifacts 'wikinews_results.tsv'
+      		archiveArtifacts 'reports/coverage.txt'
+      		archiveArtifacts 'reports/coverage.xml'
       	}
      }
-
      stage('Build plots') 
      {
-         steps {
-            build 's416199-plots'
-         }
-      }
+     	echo 'Hello World'
+     }
    }
 }

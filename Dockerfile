@@ -1,3 +1,17 @@
+
+FROM python:3.7.5
+
+RUN pip install pipenv
+RUN apt install -y git
+
+ENV PROJECT_DIR /usr/local/src/webapp
+
+WORKDIR ${PROJECT_DIR}
+
+COPY Pipfile Pipfile.lock ${PROJECT_DIR}/
+
+RUN pipenv install --system --deploy
+
 FROM python:3
 
 RUN apt update -y && apt install -y make
