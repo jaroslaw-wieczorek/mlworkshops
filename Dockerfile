@@ -8,7 +8,8 @@ ENV PROJECT_DIR /anc-backend
 
 WORKDIR ${PROJECT_DIR}
 
-COPY Pipfile Pipfile.lock ${PROJECT_DIR}/
-
 RUN pipenv install --system --deploy
 
+pipenv run coverage run manage.py run tests
+pipenv run coverage xml -o ./reports/coverage.xml
+pipenv run coverage report > ./reports/coverage.txt
