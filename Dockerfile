@@ -8,8 +8,8 @@ ENV PROJECT_DIR ./anc-backend
 
 WORKDIR ${PROJECT_DIR}
 RUN echo $(pwd)
-RUN cd PROJECT_DIR
-RUN pipenv install --system --deploy
+RUN ls
+RUN pipenv install
 
 RUN pipenv run coverage run manage.py run tests
 RUN pipenv run coverage xml -o ./reports/coverage.xml
