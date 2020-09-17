@@ -15,28 +15,22 @@ pipeline {
       
       	stage('CopyReports')
       	{
-      		steps{
+      		steps {
       			copyArtifacts filter: 'reports', fingerprintArtifacts: true, projectName: 'anc-backend-test', selector: lastSuccessful()
       		}      	
       	}
      	stage('RunTets')
      	{
-      		steps{
+      		steps {
       			sh label: 'tests', script: './skrypt.sh'   		
       		}
       	}
       	stage('ArchiveReports')
       	{
-      		steps{
+      		steps {
       			archiveArtifacts 'reports/coverage.txt'
       			archiveArtifacts 'reports/coverage.xml'
       		}
      	}
-     	stage('BuildPlots') 
-     	{
-     		steps {
-        	    echo 'Hello World'
-     		}
-  		}
 	}
 }
