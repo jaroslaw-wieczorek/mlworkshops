@@ -3,7 +3,7 @@ RUN apt update -y && apt install -y make
 RUN pip install pipenv
 RUN apt install -y git
 RUN echo $(ls)
-RUN echo "$(pwd)"
+RUN cd 'home'
 RUN echo "$(ls)"
 RUN echo "$(cat Pipfile)"
 RUN pipenv install --system --deploy
